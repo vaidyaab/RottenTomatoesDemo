@@ -8,6 +8,7 @@
 
 #import "MoviesViewController.h"
 #import "MovieCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MoviesViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *moviesTableView;
@@ -73,7 +74,6 @@ NSArray *moviesArr;
     NSDictionary *imageData = [[moviesArr objectAtIndex:indexPath.row] valueForKey:@"posters"];
     
     cell.posterImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[imageData valueForKey:@"thumbnail"]]]];
-
 
     
     return cell;
