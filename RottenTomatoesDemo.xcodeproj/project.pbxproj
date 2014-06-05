@@ -10,6 +10,8 @@
 		AD680B9EA2334419B62B6071 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8522460DCD4D2A91532B44 /* libPods.a */; };
 		CC74AF561940211C00F416B7 /* MoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC74AF541940211C00F416B7 /* MoviesViewController.m */; };
 		CC74AF571940211C00F416B7 /* MoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC74AF551940211C00F416B7 /* MoviesViewController.xib */; };
+		CC74AF5B1940288500F416B7 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC74AF591940288500F416B7 /* MovieCell.m */; };
+		CC74AF5C1940288500F416B7 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC74AF5A1940288500F416B7 /* MovieCell.xib */; };
 		CCD5B6E419401F300052B571 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD5B6E319401F300052B571 /* Foundation.framework */; };
 		CCD5B6E619401F300052B571 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD5B6E519401F300052B571 /* CoreGraphics.framework */; };
 		CCD5B6E819401F300052B571 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD5B6E719401F300052B571 /* UIKit.framework */; };
@@ -40,6 +42,9 @@
 		CC74AF531940211C00F416B7 /* MoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesViewController.h; sourceTree = "<group>"; };
 		CC74AF541940211C00F416B7 /* MoviesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesViewController.m; sourceTree = "<group>"; };
 		CC74AF551940211C00F416B7 /* MoviesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoviesViewController.xib; sourceTree = "<group>"; };
+		CC74AF581940288500F416B7 /* MovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieCell.h; sourceTree = "<group>"; };
+		CC74AF591940288500F416B7 /* MovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
+		CC74AF5A1940288500F416B7 /* MovieCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
 		CCD5B6E019401F300052B571 /* RottenTomatoesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RottenTomatoesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCD5B6E319401F300052B571 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CCD5B6E519401F300052B571 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -125,6 +130,9 @@
 				CC74AF531940211C00F416B7 /* MoviesViewController.h */,
 				CC74AF541940211C00F416B7 /* MoviesViewController.m */,
 				CC74AF551940211C00F416B7 /* MoviesViewController.xib */,
+				CC74AF581940288500F416B7 /* MovieCell.h */,
+				CC74AF591940288500F416B7 /* MovieCell.m */,
+				CC74AF5A1940288500F416B7 /* MovieCell.xib */,
 			);
 			path = RottenTomatoesDemo;
 			sourceTree = "<group>";
@@ -237,6 +245,7 @@
 			files = (
 				CCD5B6EE19401F300052B571 /* InfoPlist.strings in Resources */,
 				CC74AF571940211C00F416B7 /* MoviesViewController.xib in Resources */,
+				CC74AF5C1940288500F416B7 /* MovieCell.xib in Resources */,
 				CCD5B6F619401F300052B571 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +300,7 @@
 			files = (
 				CC74AF561940211C00F416B7 /* MoviesViewController.m in Sources */,
 				CCD5B6F419401F300052B571 /* AppDelegate.m in Sources */,
+				CC74AF5B1940288500F416B7 /* MovieCell.m in Sources */,
 				CCD5B6F019401F300052B571 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
