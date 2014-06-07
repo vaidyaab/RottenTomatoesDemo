@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Movie.h"
 
 @interface MovieDetailsViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UILabel *movieTitleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *movieSynopsisLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *moviePosterImageView;
+@property (strong, nonatomic) Movie *selectedMovie;
 
 @end

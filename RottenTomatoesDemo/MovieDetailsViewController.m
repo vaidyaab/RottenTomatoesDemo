@@ -7,6 +7,8 @@
 //
 
 #import "MovieDetailsViewController.h"
+#import "Movie.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MovieDetailsViewController ()
 
@@ -27,10 +29,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    self.movieTitleLabel.text = [defaults objectForKey:@"MOVIE_TITLE"];
+    self.movieTitleLabel.text =  [self.selectedMovie title];
+    self.movieSynopsisLabel.text = [self.selectedMovie synopsis];
+    NSURL *url = [NSURL URLWithString:[self.selectedMovie poster]];
+    [self.moviePosterImageView setImageWithURL:url];
 }
 
 - (void)didReceiveMemoryWarning

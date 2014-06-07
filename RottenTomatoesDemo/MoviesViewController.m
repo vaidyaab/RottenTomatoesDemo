@@ -11,17 +11,18 @@
 #import "UIImageView+AFNetworking.h"
 #import "MovieDetailsViewController.h"
 #import <MBProgressHUD.h>
+#import "Movie.h"
 
 @interface MoviesViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *moviesTableView;
-@property MBProgressHUD *HUD;
-
+@property (strong, nonatomic) MBProgressHUD *HUD;
+@property (strong, nonatomic) NSArray *moviesArr;
 
 @end
 
 @implementation MoviesViewController
 
-NSArray *moviesArr;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,7 +53,12 @@ NSArray *moviesArr;
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         id apiResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 
-        moviesArr = apiResponse[@"movies"];
+        NSMutableArray* mutableMovieList = [[ NSMutableArray alloc ] initWithCapacity: 5];
+        for(id mv in [apiResponse valueForKey:@"movies"]){
+            Movie* movieTemp = [[Movie alloc] initWithRottenTomatoesAPIResponse:mv];
+            [mutableMovieList addObject: movieTemp];
+        }
+        self.moviesArr = [NSArray arrayWithArray:mutableMovieList];
         
         [self.moviesTableView reloadData];
     }];
@@ -66,7 +72,7 @@ NSArray *moviesArr;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [moviesArr count];
+    return [self.moviesArr count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -81,13 +87,13 @@ NSArray *moviesArr;
         cell = [nib objectAtIndex:0];
     }
     
-    cell.titleLabel.text = [[moviesArr objectAtIndex:indexPath.row] valueForKey:@"title"];
-    cell.synopsisLabel.text = [[moviesArr objectAtIndex:indexPath.row] valueForKey:@"synopsis"];
+    Movie *currMovie = [self.moviesArr objectAtIndex:indexPath.row];
     
-    NSDictionary *imageData = [[moviesArr objectAtIndex:indexPath.row] valueForKey:@"posters"];
+    cell.titleLabel.text = [currMovie title];
+    cell.synopsisLabel.text = [currMovie synopsis];
     
     
-    NSURL *url = [NSURL URLWithString:[imageData valueForKey:@"thumbnail"]];
+    NSURL *url = [NSURL URLWithString:[currMovie thumbnail]];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
     
@@ -100,7 +106,7 @@ NSArray *moviesArr;
     [cell.posterImageView setImageWithURLRequest: request
                           placeholderImage:nil
                           success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                NSLog(@"success!");
+                              
                               weakCell.posterImageView.image = image;
                               [self.HUD hide:TRUE];
 
@@ -121,14 +127,13 @@ NSArray *moviesArr;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"selected movie row index: %d" , indexPath.row);
+    //NSLog(@"selected movie row index: %d" , indexPath.row);
     
     MovieDetailsViewController *movieDetailsController = [[MovieDetailsViewController alloc] init];
-    NSString* title = [[moviesArr objectAtIndex:indexPath.row] valueForKey:@"title"];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:title forKey:@"MOVIE_TITLE"];
-    [defaults synchronize];
+    Movie *selectedMovie = [self.moviesArr objectAtIndex:indexPath.row];
+    
+    [movieDetailsController setSelectedMovie:selectedMovie];
     
     [self.navigationController pushViewController:movieDetailsController animated:YES];
 

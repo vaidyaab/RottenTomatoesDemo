@@ -14,6 +14,7 @@
 		CC74AF5C1940288500F416B7 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC74AF5A1940288500F416B7 /* MovieCell.xib */; };
 		CCBB890919418EA300CA9450 /* MovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBB890719418EA300CA9450 /* MovieDetailsViewController.m */; };
 		CCBB890A19418EA300CA9450 /* MovieDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCBB890819418EA300CA9450 /* MovieDetailsViewController.xib */; };
+		CCC39E4619429BB0003DA3BF /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC39E4519429BB0003DA3BF /* Movie.m */; };
 		CCD5B6E419401F300052B571 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD5B6E319401F300052B571 /* Foundation.framework */; };
 		CCD5B6E619401F300052B571 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD5B6E519401F300052B571 /* CoreGraphics.framework */; };
 		CCD5B6E819401F300052B571 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD5B6E719401F300052B571 /* UIKit.framework */; };
@@ -50,6 +51,8 @@
 		CCBB890619418EA300CA9450 /* MovieDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailsViewController.h; sourceTree = "<group>"; };
 		CCBB890719418EA300CA9450 /* MovieDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailsViewController.m; sourceTree = "<group>"; };
 		CCBB890819418EA300CA9450 /* MovieDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieDetailsViewController.xib; sourceTree = "<group>"; };
+		CCC39E4419429BB0003DA3BF /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		CCC39E4519429BB0003DA3BF /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		CCD5B6E019401F300052B571 /* RottenTomatoesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RottenTomatoesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCD5B6E319401F300052B571 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CCD5B6E519401F300052B571 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -141,6 +144,8 @@
 				CCBB890619418EA300CA9450 /* MovieDetailsViewController.h */,
 				CCBB890719418EA300CA9450 /* MovieDetailsViewController.m */,
 				CCBB890819418EA300CA9450 /* MovieDetailsViewController.xib */,
+				CCC39E4419429BB0003DA3BF /* Movie.h */,
+				CCC39E4519429BB0003DA3BF /* Movie.m */,
 			);
 			path = RottenTomatoesDemo;
 			sourceTree = "<group>";
@@ -307,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCC39E4619429BB0003DA3BF /* Movie.m in Sources */,
 				CCBB890919418EA300CA9450 /* MovieDetailsViewController.m in Sources */,
 				CC74AF561940211C00F416B7 /* MoviesViewController.m in Sources */,
 				CCD5B6F419401F300052B571 /* AppDelegate.m in Sources */,
