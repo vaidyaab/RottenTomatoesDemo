@@ -7,6 +7,8 @@
 //
 
 #import "MovieCell.h"
+#import "MovieDetailsViewController.h"
+#import "MoviesViewController.h"
 
 @implementation MovieCell
 
@@ -18,8 +20,8 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    
 }
+
 
 @end

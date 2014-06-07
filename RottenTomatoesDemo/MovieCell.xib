@@ -31,6 +31,7 @@
                     </label>
                 </subviews>
             </tableViewCellContentView>
+            <gestureRecognizers/>
             <connections>
                 <outlet property="posterImageView" destination="acv-bG-5kn" id="Wbb-Kl-o2z"/>
                 <outlet property="synopsisLabel" destination="i5m-jH-FYr" id="LdY-U7-u1c"/>
