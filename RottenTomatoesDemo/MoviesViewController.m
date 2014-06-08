@@ -51,6 +51,8 @@
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        NSLog(@"yay! got the response.");
         id apiResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 
         NSMutableArray* mutableMovieList = [[ NSMutableArray alloc ] initWithCapacity: 5];
@@ -59,7 +61,7 @@
             [mutableMovieList addObject: movieTemp];
         }
         self.moviesArr = [NSArray arrayWithArray:mutableMovieList];
-        
+    
         [self.moviesTableView reloadData];
     }];
 }
@@ -73,6 +75,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.moviesArr count];
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,7 +85,7 @@
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if (cell == nil) {
-       // cell = [[MovieCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+        //cell = [[MovieCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MovieCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
@@ -90,10 +93,13 @@
     Movie *currMovie = [self.moviesArr objectAtIndex:indexPath.row];
     
     cell.titleLabel.text = [currMovie title];
+//   cell.titleLabel.text = @"The Hobbit: The Desolation Of Smaug";
     cell.synopsisLabel.text = [currMovie synopsis];
-    
-    
+//    cell.synopsisLabel.text = @"The second in a trilogy of films adapting the enduringly popular masterpiece The Hobbit, by J.R.R. Tolkien, The Hobbit: The Desolation of Smaug continues the adventure of the title character Bilbo Baggins (Martin Freeman) as he journeys with the Wizard Gandalf (Ian McKellan) and thirteen Dwarves, led by Thorin Oakenshield (Richard Armitage) on an epic quest to reclaim the lost Dwarf Kingdom of Erebor.(c) WB.";
+//    
+//    
     NSURL *url = [NSURL URLWithString:[currMovie thumbnail]];
+   // NSURL *url = [NSURL URLWithString:@"http://content6.flixster.com/movie/11/17/69/11176940_mob.jpg"];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
     
@@ -132,6 +138,12 @@
     MovieDetailsViewController *movieDetailsController = [[MovieDetailsViewController alloc] init];
     
     Movie *selectedMovie = [self.moviesArr objectAtIndex:indexPath.row];
+    
+    //Movie *selectedMovie = [[Movie alloc] init];
+    //[selectedMovie setTitle:@"The Hobbit: The Desolation Of smaug"];
+    //[selectedMovie setSynopsis:@"The second in a trilogy of films adapting the enduringly popular masterpiece The Hobbit, by J.R.R. Tolkien, The Hobbit: The Desolation of Smaug continues the adventure of the title character Bilbo Baggins (Martin Freeman) as he journeys with the Wizard Gandalf (Ian McKellan) and thirteen Dwarves, led by Thorin Oakenshield (Richard Armitage) on an epic quest to reclaim the lost Dwarf Kingdom of Erebor.(c) WB. THis is some more dummy text just trying to make it scroll 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890"];
+    //[selectedMovie setPoster:@"http://content6.flixster.com/movie/11/17/69/11176940_ori.jpg"];
+    
     
     [movieDetailsController setSelectedMovie:selectedMovie];
     

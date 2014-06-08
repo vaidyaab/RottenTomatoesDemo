@@ -32,14 +32,24 @@
     
     self.movieTitleLabel.text =  [self.selectedMovie title];
     self.movieSynopsisLabel.text = [self.selectedMovie synopsis];
+    //NSLog(@"poster URL for: %@ is -> %@",[self.selectedMovie title],[self.selectedMovie poster]);
     NSURL *url = [NSURL URLWithString:[self.selectedMovie poster]];
     [self.moviePosterImageView setImageWithURL:url];
+    self.title = [self.selectedMovie title];
+    //self.movieSynopsisScrollView.contentSize =CGSizeMake(320, 700);
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self.movieSynopsisScrollView layoutIfNeeded];
+    self.movieSynopsisScrollView.contentSize = self.contentView.bounds.size;
+    
 }
 
 @end

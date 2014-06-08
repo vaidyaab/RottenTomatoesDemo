@@ -14,6 +14,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *movieTitleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *movieSynopsisLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *moviePosterImageView;
+@property (strong, nonatomic) IBOutlet UIScrollView *movieSynopsisScrollView;
 @property (strong, nonatomic) Movie *selectedMovie;
+@property (strong, nonatomic) IBOutlet UIView *contentView;
 
 @end
