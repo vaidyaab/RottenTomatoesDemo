@@ -11,4 +11,9 @@
 
 @interface MoviesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MBProgressHUDDelegate>
 
+@property (nonatomic) BOOL networkAvailable;
+//- (void) startNetworkMonitor;
+- (void) reachabilityChanged:(NSNotification *)note;
+
+
 @end

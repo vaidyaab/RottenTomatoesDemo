@@ -12,11 +12,16 @@
 #import "MovieDetailsViewController.h"
 #import <MBProgressHUD.h>
 #import "Movie.h"
+#import "Reachability/Reachability.h"
+#import <QuartzCore/QuartzCore.h>
+#import <ODRefreshControl/ODRefreshControl.h>
+
 
 @interface MoviesViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *moviesTableView;
 @property (strong, nonatomic) MBProgressHUD *HUD;
 @property (strong, nonatomic) NSArray *moviesArr;
+@property (strong, nonatomic) IBOutlet UILabel *networkCheckLabel;
 
 @end
 
@@ -36,10 +41,74 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=g9au4hv6khv6wzvzgt55gpqs";
+    
+    self.networkCheckLabel.hidden = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reachabilityChanged:)
+                                                 name:kReachabilityChangedNotification
+                                               object:nil];
+    Reachability *reach = [Reachability reachabilityWithHostname:@"www.yahoo.com"];
+    
+    [reach startNotifier];
     
     self.moviesTableView.delegate = self;
     self.moviesTableView.dataSource = self;
+    
+    [self loadDataFromRottenTomatoesAPI];
+    
+    ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:self.moviesTableView];
+    refreshControl.tintColor = [UIColor grayColor];
+    
+    [refreshControl addTarget:self action:@selector(refreshTableViewHandler:) forControlEvents:UIControlEventValueChanged];
+    
+}
+
+- (void) refreshTableViewHandler:(ODRefreshControl*) refreshControl {
+    
+    [self loadDataFromRottenTomatoesAPI];
+    [refreshControl endRefreshing];
+}
+
+-(void) loadDataFromRottenTomatoesAPI {
+    
+    
+    NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=g9au4hv6khv6wzvzgt55gpqs";
+    
+    [self addProgressBar];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        
+        if(data){
+            
+            id apiResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            NSMutableArray* mutableMovieList = [[ NSMutableArray alloc ] initWithCapacity: 5];
+            for(id mv in [apiResponse valueForKey:@"movies"]){
+                Movie* movieTemp = [[Movie alloc] initWithRottenTomatoesAPIResponse:mv];
+                [mutableMovieList addObject: movieTemp];
+            }
+            self.moviesArr = [NSArray arrayWithArray:mutableMovieList];
+            
+            [self.moviesTableView reloadData];
+            
+        }else{
+            
+            if(connectionError){
+                
+                self.networkCheckLabel.text = @"⚠︎ Network Error!";
+                [self.HUD hide:TRUE];
+                
+                self.networkCheckLabel.hidden = NO;
+            }
+        }
+        
+    }];
+}
+
+- (void) addProgressBar {
     
     self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:self.HUD];
@@ -48,22 +117,6 @@
     self.HUD.delegate = self;
     self.HUD.labelText = @"Loading..";
     [self.HUD show:TRUE];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        
-        NSLog(@"yay! got the response.");
-        id apiResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-
-        NSMutableArray* mutableMovieList = [[ NSMutableArray alloc ] initWithCapacity: 5];
-        for(id mv in [apiResponse valueForKey:@"movies"]){
-            Movie* movieTemp = [[Movie alloc] initWithRottenTomatoesAPIResponse:mv];
-            [mutableMovieList addObject: movieTemp];
-        }
-        self.moviesArr = [NSArray arrayWithArray:mutableMovieList];
-    
-        [self.moviesTableView reloadData];
-    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -150,5 +203,42 @@
     [self.navigationController pushViewController:movieDetailsController animated:YES];
 
 }
+
+- (void) reachabilityChanged:(NSNotification *)note {
+    
+    Reachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
+    
+    [self getReachabilityStatus: curReach];
+}
+
+- (BOOL) getReachabilityStatus:(Reachability *) reach {
+    
+    NetworkStatus netStatus = [reach currentReachabilityStatus];
+    
+    switch (netStatus)
+    {
+        case NotReachable: {
+            self.networkAvailable = NO;
+            break;
+        }
+            
+        case ReachableViaWWAN: {
+            self.networkAvailable = YES;
+            break;
+        }
+        case ReachableViaWiFi: {
+            self.networkAvailable = YES;
+            break;
+        }
+    }
+    
+    return self.networkAvailable;
+}
+
+-(void) dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
+}
+
 
 @end

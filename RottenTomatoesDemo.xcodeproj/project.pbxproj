@@ -14,7 +14,9 @@
 		CC74AF5C1940288500F416B7 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC74AF5A1940288500F416B7 /* MovieCell.xib */; };
 		CCBB890919418EA300CA9450 /* MovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBB890719418EA300CA9450 /* MovieDetailsViewController.m */; };
 		CCBB890A19418EA300CA9450 /* MovieDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCBB890819418EA300CA9450 /* MovieDetailsViewController.xib */; };
+		CCC35DD719451C5E000A7DD1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC35DD619451C5E000A7DD1 /* SystemConfiguration.framework */; };
 		CCC39E4619429BB0003DA3BF /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC39E4519429BB0003DA3BF /* Movie.m */; };
+		CCC799B719455EF700466515 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC799B619455EF700466515 /* QuartzCore.framework */; };
 		CCD5B6E419401F300052B571 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD5B6E319401F300052B571 /* Foundation.framework */; };
 		CCD5B6E619401F300052B571 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD5B6E519401F300052B571 /* CoreGraphics.framework */; };
 		CCD5B6E819401F300052B571 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD5B6E719401F300052B571 /* UIKit.framework */; };
@@ -51,8 +53,10 @@
 		CCBB890619418EA300CA9450 /* MovieDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailsViewController.h; sourceTree = "<group>"; };
 		CCBB890719418EA300CA9450 /* MovieDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailsViewController.m; sourceTree = "<group>"; };
 		CCBB890819418EA300CA9450 /* MovieDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieDetailsViewController.xib; sourceTree = "<group>"; };
+		CCC35DD619451C5E000A7DD1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CCC39E4419429BB0003DA3BF /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		CCC39E4519429BB0003DA3BF /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		CCC799B619455EF700466515 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CCD5B6E019401F300052B571 /* RottenTomatoesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RottenTomatoesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCD5B6E319401F300052B571 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CCD5B6E519401F300052B571 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -76,6 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCC799B719455EF700466515 /* QuartzCore.framework in Frameworks */,
+				CCC35DD719451C5E000A7DD1 /* SystemConfiguration.framework in Frameworks */,
 				CCD5B6E619401F300052B571 /* CoreGraphics.framework in Frameworks */,
 				CCD5B6E819401F300052B571 /* UIKit.framework in Frameworks */,
 				CCD5B6E419401F300052B571 /* Foundation.framework in Frameworks */,
@@ -119,6 +125,8 @@
 		CCD5B6E219401F300052B571 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CCC799B619455EF700466515 /* QuartzCore.framework */,
+				CCC35DD619451C5E000A7DD1 /* SystemConfiguration.framework */,
 				CCD5B6E319401F300052B571 /* Foundation.framework */,
 				CCD5B6E519401F300052B571 /* CoreGraphics.framework */,
 				CCD5B6E719401F300052B571 /* UIKit.framework */,
