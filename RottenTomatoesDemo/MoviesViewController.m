@@ -92,6 +92,10 @@
             }
             self.moviesArr = [NSArray arrayWithArray:mutableMovieList];
             
+            if(self.networkCheckLabel.hidden == NO){
+                self.networkCheckLabel.hidden = YES;
+            }
+            
             [self.moviesTableView reloadData];
             
         }else{
