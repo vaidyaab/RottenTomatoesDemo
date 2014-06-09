@@ -26,9 +26,15 @@ install cocoapods using following command - "sudo gem install cocoapods"
 run "pod install" from the project root
 
 Acknowledgements:
-Licecap - GIF created with [LiceCap](http://www.cockos.com/licecap/).
-MBProgressHUD - Copyright (c) 2013 Matej Bukovinski
-AFNetworking - Copyright (c) 2013-2014 AFNetworking (http://afnetworking.com/)
-ODRefreshControl - The MIT License. Copyright (c) 2012 Fabio Ritrovato. All rights reserved.
-Reachability - Copyright (c) 2011, Tony Million. All rights reserved.
+
+ Licecap - GIF created with [LiceCap](http://www.cockos.com/licecap/).
+ 
+ MBProgressHUD - Copyright (c) 2013 Matej Bukovinski
+ 
+ AFNetworking - Copyright (c) 2013-2014 AFNetworking (http://afnetworking.com/)
+ 
+ ODRefreshControl - The MIT License. Copyright (c) 2012 Fabio Ritrovato. All rights reserved.
+ 
+ Reachability - Copyright (c) 2011, Tony Million. All rights reserved.
+ 
 
