@@ -159,6 +159,13 @@
                           success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                           
                               weakCell.posterImageView.image = image;
+                              
+                              weakCell.posterImageView.alpha = 0;
+                              [UIView beginAnimations:@"fade in" context:nil];
+                              [UIView setAnimationDuration:2.0];
+                              weakCell.posterImageView.alpha = 1;
+                              [UIView commitAnimations];
+                              
                               [self.HUD hide:TRUE];
                           }
                           failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {

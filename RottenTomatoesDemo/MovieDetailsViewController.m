@@ -35,8 +35,34 @@
     self.movieTitleLabel.text =  [self.selectedMovie title];
     self.movieSynopsisLabel.text = [self.selectedMovie synopsis];
     NSURL *url = [NSURL URLWithString:[self.selectedMovie poster]];
-    [self.moviePosterImageView setImageWithURL:url];
     self.title = [self.selectedMovie title];
+    
+//    [self.moviePosterImageView setImageWithURL:url];
+    
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
+    [request setHTTPShouldHandleCookies:NO];
+    [request setHTTPShouldUsePipelining:YES];
+    [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
+    __weak MovieDetailsViewController* weakSelf = self;
+    [self.moviePosterImageView setImageWithURLRequest: request
+                                placeholderImage:nil
+                                success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                             
+                                    weakSelf.moviePosterImageView.image = image;
+                                    weakSelf.moviePosterImageView.alpha = 0;
+                                    [UIView beginAnimations:@"fade in" context:nil];
+                                    [UIView setAnimationDuration:2.0];
+                                    weakSelf.moviePosterImageView.alpha = 1;
+                                    [UIView commitAnimations];
+                                           
+                                }
+                                failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                             
+                                }
+     ];
+
+    
 
 }
 
