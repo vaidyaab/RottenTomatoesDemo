@@ -15,5 +15,6 @@
 //- (void) startNetworkMonitor;
 - (void) reachabilityChanged:(NSNotification *)note;
 
+- (id) initWithRTURL:(NSString*) apiEndPointParam title:(NSString*) titleParam;
 
 @end

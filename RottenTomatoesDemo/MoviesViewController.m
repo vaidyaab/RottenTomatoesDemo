@@ -23,7 +23,7 @@
 @property (strong, nonatomic) MBProgressHUD *HUD;
 @property (strong, nonatomic) NSArray *moviesArr;
 @property (strong, nonatomic) IBOutlet UILabel *networkCheckLabel;
-
+@property (strong, nonatomic) NSString* apiEndPoint;
 @end
 
 @implementation MoviesViewController
@@ -33,9 +33,15 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.title = @"Movies";
-    }
+    
+    return self;
+}
+
+- (id) initWithRTURL:(NSString*) apiEndPointParam title:(NSString*) titleParam {
+    
+    self = [super init];
+    self.apiEndPoint = apiEndPointParam;
+    self.title = titleParam;
     return self;
 }
 
@@ -74,11 +80,11 @@
 -(void) loadDataFromRottenTomatoesAPI {
     
     
-    NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=g9au4hv6khv6wzvzgt55gpqs";
+    //NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=g9au4hv6khv6wzvzgt55gpqs";
     
     [self addProgressBar];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.apiEndPoint]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         

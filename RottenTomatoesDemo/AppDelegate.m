@@ -14,11 +14,24 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    MoviesViewController *mvc = [[MoviesViewController alloc] init];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:mvc];
-    self.window.rootViewController = nvc;
     
+    MoviesViewController *boxOfficeViewController = [[MoviesViewController alloc]
+                                                     initWithRTURL:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=g9au4hv6khv6wzvzgt55gpqs"
+                                                     title: @"Box Office"];
+    UINavigationController *boxOfficeNavController = [[UINavigationController alloc] initWithRootViewController:boxOfficeViewController];
+    boxOfficeNavController.tabBarItem.image = [UIImage imageNamed:@"ticket.png"];
+    boxOfficeNavController.title = @"Box Office Movies";
+    
+    MoviesViewController *topDVDsViewController = [[MoviesViewController alloc] initWithRTURL:@"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=g9au4hv6khv6wzvzgt55gpqs"
+                                                    title: @"Top DVDs"];
+    UINavigationController *topDVDsNavController = [[UINavigationController alloc] initWithRootViewController:topDVDsViewController];
+    topDVDsNavController.tabBarItem.image = [UIImage imageNamed:@"disc.png"];
+    topDVDsNavController.title = @"Top DVD Rentals";
+    
+    UITabBarController *tbc = [[UITabBarController alloc] init];
+    [tbc setViewControllers:[NSArray arrayWithObjects:boxOfficeNavController, topDVDsNavController, nil]];
+    [tbc.view setBackgroundColor:[UIColor lightGrayColor]];
+    self.window.rootViewController = tbc;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
