@@ -2,7 +2,7 @@ RottenTomatoesDemo
 ==================
 
 
-This is an IOS demo application for displaying the latest box office movies using the [RottenTomatoes API](http://www.rottentomatoes.com/). See the [RottenTomatoes Networking Tutorial](http://guides.thecodepath.com/android/RottenTomatoes-Networking-Tutorial) on our cliffnotes for a step-by-step tutorial.
+This is an IOS demo application for displaying the latest box office movies using the [RottenTomatoes API](http://www.rottentomatoes.com/). 
 
 Time spent: 8 hours spent in total
 
@@ -18,12 +18,6 @@ Walkthrough of all user stories:
 
 ![Video Walkthrough](rotten_tomatoes_demo.gif)
 
-Installation instructions -
-
-Download the project from github
-Install latest version of Ruby
-install cocoapods using following command - "sudo gem install cocoapods"
-run "pod install" from the project root
 
 Acknowledgements:
 
