@@ -17,6 +17,7 @@
 #import <ODRefreshControl/ODRefreshControl.h>
 
 
+
 @interface MoviesViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *moviesTableView;
 @property (strong, nonatomic) MBProgressHUD *HUD;
@@ -101,15 +102,15 @@
         }else{
             
             if(connectionError){
-                
                 self.networkCheckLabel.text = @"⚠︎ Network Error!";
                 [self.HUD hide:TRUE];
-                
                 self.networkCheckLabel.hidden = NO;
             }
         }
         
     }];
+    
+    [self.moviesTableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
 }
 
 - (void) addProgressBar {
@@ -117,7 +118,6 @@
     self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:self.HUD];
     self.HUD.dimBackground = YES;
-    // Regiser for HUD callbacks so we can remove it from the window at the right time
     self.HUD.delegate = self;
     self.HUD.labelText = @"Loading..";
     [self.HUD show:TRUE];
@@ -132,79 +132,46 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.moviesArr count];
-
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"MovieCell";
     
-    MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        //cell = [[MovieCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MovieCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-    
+    MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     Movie *currMovie = [self.moviesArr objectAtIndex:indexPath.row];
-    
     cell.titleLabel.text = [currMovie title];
-//   cell.titleLabel.text = @"The Hobbit: The Desolation Of Smaug";
     cell.synopsisLabel.text = [currMovie synopsis];
-//    cell.synopsisLabel.text = @"The second in a trilogy of films adapting the enduringly popular masterpiece The Hobbit, by J.R.R. Tolkien, The Hobbit: The Desolation of Smaug continues the adventure of the title character Bilbo Baggins (Martin Freeman) as he journeys with the Wizard Gandalf (Ian McKellan) and thirteen Dwarves, led by Thorin Oakenshield (Richard Armitage) on an epic quest to reclaim the lost Dwarf Kingdom of Erebor.(c) WB.";
-//    
-//    
+
     NSURL *url = [NSURL URLWithString:[currMovie thumbnail]];
-   // NSURL *url = [NSURL URLWithString:@"http://content6.flixster.com/movie/11/17/69/11176940_mob.jpg"];
-    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
-    
     [request setHTTPShouldHandleCookies:NO];
     [request setHTTPShouldUsePipelining:YES];
     [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
-    
     __weak MovieCell *weakCell = cell;
-    
     [cell.posterImageView setImageWithURLRequest: request
                           placeholderImage:nil
                           success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                              
+                          
                               weakCell.posterImageView.image = image;
                               [self.HUD hide:TRUE];
-
                           }
                           failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                              NSLog(@"Failed!");
+                              
                               [self.HUD hide:TRUE];
 
                           }
      ];
-    
-    //[cell.posterImageView setImageWithURL:url];
-    
-    //cell.posterImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[imageData valueForKey:@"thumbnail"]]]];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    //NSLog(@"selected movie row index: %d" , indexPath.row);
-    
-    MovieDetailsViewController *movieDetailsController = [[MovieDetailsViewController alloc] init];
-    
     Movie *selectedMovie = [self.moviesArr objectAtIndex:indexPath.row];
-    
-    //Movie *selectedMovie = [[Movie alloc] init];
-    //[selectedMovie setTitle:@"The Hobbit: The Desolation Of smaug"];
-    //[selectedMovie setSynopsis:@"The second in a trilogy of films adapting the enduringly popular masterpiece The Hobbit, by J.R.R. Tolkien, The Hobbit: The Desolation of Smaug continues the adventure of the title character Bilbo Baggins (Martin Freeman) as he journeys with the Wizard Gandalf (Ian McKellan) and thirteen Dwarves, led by Thorin Oakenshield (Richard Armitage) on an epic quest to reclaim the lost Dwarf Kingdom of Erebor.(c) WB. THis is some more dummy text just trying to make it scroll 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890"];
-    //[selectedMovie setPoster:@"http://content6.flixster.com/movie/11/17/69/11176940_ori.jpg"];
-    
-    
+    MovieDetailsViewController *movieDetailsController = [[MovieDetailsViewController alloc] init];
     [movieDetailsController setSelectedMovie:selectedMovie];
-    
     [self.navigationController pushViewController:movieDetailsController animated:YES];
+
 
 }
 
@@ -212,21 +179,18 @@
     
     Reachability* curReach = [note object];
 	NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
-    
     [self getReachabilityStatus: curReach];
 }
 
 - (BOOL) getReachabilityStatus:(Reachability *) reach {
     
     NetworkStatus netStatus = [reach currentReachabilityStatus];
-    
     switch (netStatus)
     {
         case NotReachable: {
             self.networkAvailable = NO;
             break;
         }
-            
         case ReachableViaWWAN: {
             self.networkAvailable = YES;
             break;
@@ -236,13 +200,11 @@
             break;
         }
     }
-    
     return self.networkAvailable;
 }
 
 -(void) dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
-
 
 @end
