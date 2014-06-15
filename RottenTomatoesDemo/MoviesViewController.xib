@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="moviesTableView" destination="LqI-y3-dEP" id="Fjc-og-0aQ"/>
                 <outlet property="networkCheckLabel" destination="UfG-x5-iks" id="Rws-8I-Opk"/>
+                <outlet property="searchDisplayController" destination="LzH-HI-ze9" id="8DB-M9-uR0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,6 +21,14 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <searchBar key="tableHeaderView" contentMode="redraw" id="m47-yZ-Mjj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <textInputTraits key="textInputTraits"/>
+                        <connections>
+                            <outlet property="delegate" destination="-1" id="J6i-Q1-DfR"/>
+                        </connections>
+                    </searchBar>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="kcC-xx-pu4"/>
                         <outlet property="delegate" destination="-1" id="enY-iF-ANV"/>
@@ -44,5 +53,14 @@
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
+        <searchDisplayController id="LzH-HI-ze9">
+            <connections>
+                <outlet property="delegate" destination="-1" id="ihE-hW-Z75"/>
+                <outlet property="searchBar" destination="m47-yZ-Mjj" id="KsT-sN-ZM6"/>
+                <outlet property="searchContentsController" destination="-1" id="LTa-w6-fiw"/>
+                <outlet property="searchResultsDataSource" destination="-1" id="P9U-oJ-ctp"/>
+                <outlet property="searchResultsDelegate" destination="-1" id="Jwy-aH-gUa"/>
+            </connections>
+        </searchDisplayController>
     </objects>
 </document>

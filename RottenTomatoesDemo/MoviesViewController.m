@@ -23,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *moviesTableView;
 @property (strong, nonatomic) MBProgressHUD *HUD;
 @property (strong, nonatomic) NSArray *moviesArr;
+@property (strong, nonatomic) NSArray *searchResultsArr;
 @property (strong, nonatomic) IBOutlet UILabel *networkCheckLabel;
 @property (strong, nonatomic) NSString* apiEndPoint;
 
@@ -81,9 +82,9 @@
 
 -(void) loadDataFromRottenTomatoesAPI {
     
-    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docsDir = [dirPaths objectAtIndex:0];
-    NSLog(@"docsDir here: %@", docsDir);
+    //NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //NSString *docsDir = [dirPaths objectAtIndex:0];
+    //NSLog(@"docsDir here: %@", docsDir);
     
     [self addProgressBar];
     
@@ -120,6 +121,7 @@
     }];
     
     [self.moviesTableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
+    [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
 }
 
 - (void) addProgressBar {
@@ -132,6 +134,33 @@
     [self.HUD show:TRUE];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 120.0;
+    
+}
+
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate
+                                    predicateWithFormat:@"SELF.title contains[cd] %@",
+                                    searchText];
+    
+    self.searchResultsArr = [self.moviesArr filteredArrayUsingPredicate:resultPredicate];
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller
+shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -140,14 +169,29 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.moviesArr count];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [self.searchResultsArr count];
+        
+    } else {
+        return [self.moviesArr count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
-    Movie *currMovie = [self.moviesArr objectAtIndex:indexPath.row];
+    
+    Movie* currMovie;
+    
+    if(tableView == self.searchDisplayController.searchResultsTableView){
+        
+        currMovie = [self.searchResultsArr objectAtIndex:indexPath.row];
+        
+    }else{
+        currMovie = [self.moviesArr objectAtIndex:indexPath.row];
+    }
+    
     cell.titleLabel.text = [currMovie title];
     cell.synopsisLabel.text = [currMovie synopsis];
 
