@@ -18,12 +18,14 @@
 
 
 
+
 @interface MoviesViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *moviesTableView;
 @property (strong, nonatomic) MBProgressHUD *HUD;
 @property (strong, nonatomic) NSArray *moviesArr;
 @property (strong, nonatomic) IBOutlet UILabel *networkCheckLabel;
 @property (strong, nonatomic) NSString* apiEndPoint;
+
 @end
 
 @implementation MoviesViewController
@@ -181,13 +183,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    
     Movie *selectedMovie = [self.moviesArr objectAtIndex:indexPath.row];
     MovieDetailsViewController *movieDetailsController = [[MovieDetailsViewController alloc] init];
     [movieDetailsController setSelectedMovie:selectedMovie];
     [self.navigationController pushViewController:movieDetailsController animated:YES];
-
+    
 
 }
+
 
 - (void) reachabilityChanged:(NSNotification *)note {
     

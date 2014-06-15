@@ -23,8 +23,8 @@
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label abc abc bc cbcbscmnsbsbsdfsdjfhsdjkfhsdjkfhskjfhfskjfhksjfcjkhdsjhfsdjfhskjfhkjsdfhksdjfh" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="215" translatesAutoresizingMaskIntoConstraints="NO" id="i5m-jH-FYr">
-                        <rect key="frame" x="105" y="40" width="215" height="63"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label abc abc bc cbcbscmnsbsbsdfsdjfhsdjkfhsdjkfhskjfhfskjfhksjfcjkhdsjhfsdjfhskjfhkjsdfhksdjfh" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="185" translatesAutoresizingMaskIntoConstraints="NO" id="i5m-jH-FYr">
+                        <rect key="frame" x="105" y="40" width="185" height="67"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="highlightedColor"/>

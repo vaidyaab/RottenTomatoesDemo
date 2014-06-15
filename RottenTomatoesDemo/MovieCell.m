@@ -19,8 +19,16 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    [super setSelected:selected animated:animated];
+  //  [super setSelected:selected animated:animated];
+    if(selected){
+        [self setBackgroundColor:[UIColor yellowColor]];
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }else{
+        [self setBackgroundColor:[UIColor whiteColor]];
+        self.accessoryType = UITableViewCellAccessoryNone;
+    }
     
+
 }
 
 
