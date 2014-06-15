@@ -21,7 +21,7 @@
 
 @interface MoviesViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *moviesTableView;
-@property (strong, nonatomic) MBProgressHUD *HUD;
+@property (strong, nonatomic) MBProgressHUD *progressBar;
 @property (strong, nonatomic) NSArray *moviesArr;
 @property (strong, nonatomic) NSArray *searchResultsArr;
 @property (strong, nonatomic) IBOutlet UILabel *networkCheckLabel;
@@ -52,6 +52,20 @@
 {
     [super viewDidLoad];
     
+    [self startReachabilityThread];
+    
+    self.moviesTableView.delegate = self;
+    self.moviesTableView.dataSource = self;
+    
+    [self loadDataFromRottenTomatoesAPI];
+    
+    [self addRefreshControlToMoviesTable];
+    
+    
+}
+
+-(void) startReachabilityThread {
+    
     self.networkCheckLabel.hidden = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -61,17 +75,15 @@
     Reachability *reach = [Reachability reachabilityWithHostname:@"www.yahoo.com"];
     
     [reach startNotifier];
+}
+
+-(void) addRefreshControlToMoviesTable {
     
-    self.moviesTableView.delegate = self;
-    self.moviesTableView.dataSource = self;
-    
-    [self loadDataFromRottenTomatoesAPI];
     
     ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:self.moviesTableView];
     refreshControl.tintColor = [UIColor grayColor];
     
     [refreshControl addTarget:self action:@selector(refreshTableViewHandler:) forControlEvents:UIControlEventValueChanged];
-    
 }
 
 - (void) refreshTableViewHandler:(ODRefreshControl*) refreshControl {
@@ -113,7 +125,7 @@
             
             if(connectionError){
                 self.networkCheckLabel.text = @"⚠︎ Network Error!";
-                [self.HUD hide:TRUE];
+                [self.progressBar hide:TRUE];
                 self.networkCheckLabel.hidden = NO;
             }
         }
@@ -126,12 +138,12 @@
 
 - (void) addProgressBar {
     
-    self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
-    [self.view addSubview:self.HUD];
-    self.HUD.dimBackground = YES;
-    self.HUD.delegate = self;
-    self.HUD.labelText = @"Loading..";
-    [self.HUD show:TRUE];
+    self.progressBar = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:self.progressBar];
+    self.progressBar.dimBackground = YES;
+    self.progressBar.delegate = self;
+    self.progressBar.labelText = @"Loading..";
+    [self.progressBar show:TRUE];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -192,36 +204,9 @@ shouldReloadTableForSearchString:(NSString *)searchString
         currMovie = [self.moviesArr objectAtIndex:indexPath.row];
     }
     
-    cell.titleLabel.text = [currMovie title];
-    cell.synopsisLabel.text = [currMovie synopsis];
-
-    NSURL *url = [NSURL URLWithString:[currMovie thumbnail]];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
-    [request setHTTPShouldHandleCookies:NO];
-    [request setHTTPShouldUsePipelining:YES];
-    [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
-    __weak MovieCell *weakCell = cell;
-    [cell.posterImageView setImageWithURLRequest: request
-                          placeholderImage:nil
-                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                          
-                              weakCell.posterImageView.image = image;
-                              
-                              weakCell.posterImageView.alpha = 0;
-                              [UIView beginAnimations:@"fade in" context:nil];
-                              [UIView setAnimationDuration:2.0];
-                              weakCell.posterImageView.alpha = 1;
-                              [UIView commitAnimations];
-                              
-                              [self.HUD hide:TRUE];
-                          }
-                          failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                              
-                              [self.HUD hide:TRUE];
-
-                          }
-     ];
+    cell = [cell initWithMovie:currMovie progressBar:self.progressBar];
     
+        
     return cell;
 }
 

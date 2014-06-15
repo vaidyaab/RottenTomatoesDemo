@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Movie.h"
+#import <MBProgressHUD.h>
 
 @interface MovieCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UIImageView *posterImageView;
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *synopsisLabel;
-
+- (id) initWithMovie: (Movie*) selectedMovie progressBar:(MBProgressHUD*) progressBarParam;
 @end

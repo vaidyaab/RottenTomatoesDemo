@@ -9,12 +9,58 @@
 #import "MovieCell.h"
 #import "MovieDetailsViewController.h"
 #import "MoviesViewController.h"
+#import "UIImageView+AFNetworking.h"
+
+@interface MovieCell ()
+    @property (strong, nonatomic) IBOutlet UIImageView *posterImageView;
+    @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+    @property (strong, nonatomic) IBOutlet UILabel *synopsisLabel;
+
+@end
 
 @implementation MovieCell
 
 - (void)awakeFromNib
 {
     // Initialization code
+}
+
+- (id) initWithMovie:(Movie*) selectedMovie progressBar:(MBProgressHUD*) progressBarParam {
+    
+    self = [super init];
+    
+    self.titleLabel.text = [selectedMovie title];
+    self.synopsisLabel.text = [selectedMovie synopsis];
+    
+    NSURL *url = [NSURL URLWithString:[selectedMovie thumbnail]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
+    [request setHTTPShouldHandleCookies:NO];
+    [request setHTTPShouldUsePipelining:YES];
+    [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
+    __weak MovieCell *weakCell = self;
+    [self.posterImageView setImageWithURLRequest: request
+                                placeholderImage:nil
+                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                             
+                                             weakCell.posterImageView.image = image;
+                                             
+                                             weakCell.posterImageView.alpha = 0;
+                                             [UIView beginAnimations:@"fade in" context:nil];
+                                             [UIView setAnimationDuration:2.0];
+                                             weakCell.posterImageView.alpha = 1;
+                                             [UIView commitAnimations];
+                                             
+                                             [progressBarParam hide:TRUE];
+                                         }
+                                         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                             
+                                             [progressBarParam hide:TRUE];
+                                             
+                                         }
+     ];
+
+    
+    return self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
