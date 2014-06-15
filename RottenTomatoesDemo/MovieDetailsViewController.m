@@ -36,10 +36,6 @@
     self.movieSynopsisLabel.text = [self.selectedMovie synopsis];
     NSURL *url = [NSURL URLWithString:[self.selectedMovie poster]];
     self.title = [self.selectedMovie title];
-    
-//    [self.moviePosterImageView setImageWithURL:url];
-    
-    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
     [request setHTTPShouldHandleCookies:NO];
     [request setHTTPShouldUsePipelining:YES];

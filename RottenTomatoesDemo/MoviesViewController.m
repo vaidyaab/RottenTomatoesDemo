@@ -79,8 +79,9 @@
 
 -(void) loadDataFromRottenTomatoesAPI {
     
-    
-    //NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=g9au4hv6khv6wzvzgt55gpqs";
+    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsDir = [dirPaths objectAtIndex:0];
+    NSLog(@"docsDir here: %@", docsDir);
     
     [self addProgressBar];
     

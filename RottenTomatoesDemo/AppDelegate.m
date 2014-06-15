@@ -15,6 +15,12 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:2 * 1024 * 1024
+                                                            diskCapacity:100 * 1024 * 1024
+                                                                diskPath:nil];
+    [NSURLCache setSharedURLCache:sharedCache];
+
+    
     MoviesViewController *boxOfficeViewController = [[MoviesViewController alloc]
                                                      initWithRTURL:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=g9au4hv6khv6wzvzgt55gpqs"
                                                      title: @"Box Office"];
