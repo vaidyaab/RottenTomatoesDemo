@@ -21,11 +21,13 @@
 {
   //  [super setSelected:selected animated:animated];
     if(selected){
-        [self setBackgroundColor:[UIColor yellowColor]];
+        [self setBackgroundColor:[UIColor colorWithRed:192/255.0f green:209/255.0f blue:229/255.0f alpha:1.0f]];
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
     }else{
         [self setBackgroundColor:[UIColor whiteColor]];
         self.accessoryType = UITableViewCellAccessoryNone;
+
     }
     
 
