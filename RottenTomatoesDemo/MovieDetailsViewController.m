@@ -42,7 +42,7 @@
     [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
     __weak MovieDetailsViewController* weakSelf = self;
     [self.moviePosterImageView setImageWithURLRequest: request
-                                placeholderImage:nil
+                                placeholderImage:[UIImage imageWithData:self.selectedMovie.cachedThumbnail]
                                 success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                              
                                     weakSelf.moviePosterImageView.image = image;
