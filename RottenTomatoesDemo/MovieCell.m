@@ -39,6 +39,7 @@
         
     }else{
         
+        NSLog(@"loading from remote");
         NSURL *url = [NSURL URLWithString:[selectedMovie thumbnail]];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
         [request setHTTPShouldHandleCookies:NO];
@@ -49,9 +50,8 @@
                                     placeholderImage:nil
                                              success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                                  
-                                                 CGDataProviderRef provider = CGImageGetDataProvider(image.CGImage);
-                                                 NSData* data = (id)CFBridgingRelease(CGDataProviderCopyData(provider));
-                                                 [selectedMovie setCachedThumbnail:data];
+                                                 NSData *imageData = UIImagePNGRepresentation(image);
+                                                 [selectedMovie setCachedThumbnail:imageData];
                                                  
                                                  weakCell.posterImageView.image = image;
                                                  
@@ -70,10 +70,6 @@
                                              }
          ];
     }
-    
-    
-
-    
     return self;
 }
 
