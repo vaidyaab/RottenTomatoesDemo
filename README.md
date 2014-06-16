@@ -19,12 +19,16 @@ Completed user stories:
  * [x] Optional: Add a tab bar for Box Office and DVD
  * [x] Optional: Add a search bar
  * [x] Optional: Customize the navigation bar
- * [] Optional: For the large poster, load the low-res image first, switch to high-res when complete
- * [] Optional: All images should be cached in memory and disk. In other words, images load immediately upon cold start
+ * [x] Optional: For the large poster, load the low-res image first, switch to high-res when complete
+ * [x] Optional: All images should be cached in memory and disk. In other words, images load immediately upon cold start
 
 Walkthrough of all user stories:
 
 ![Video Walkthrough](rotten_tomatoes_demo.gif)
+
+===================================================
+
+![Video Walkthrough](rotten_tomatoes_demo_optional.gif)
 
 
 Acknowledgements:

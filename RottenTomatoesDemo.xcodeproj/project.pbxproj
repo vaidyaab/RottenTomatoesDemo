@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AD680B9EA2334419B62B6071 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8522460DCD4D2A91532B44 /* libPods.a */; };
 		CC21591E194CCFAE00E70F9D /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = CC21591D194CCFAE00E70F9D /* Podfile.lock */; };
+		CC272879194F67E100621739 /* rotten_tomatoes_demo_optional.gif in Resources */ = {isa = PBXBuildFile; fileRef = CC272878194F67E100621739 /* rotten_tomatoes_demo_optional.gif */; };
 		CC74AF561940211C00F416B7 /* MoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC74AF541940211C00F416B7 /* MoviesViewController.m */; };
 		CC74AF571940211C00F416B7 /* MoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC74AF551940211C00F416B7 /* MoviesViewController.xib */; };
 		CC74AF5B1940288500F416B7 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC74AF591940288500F416B7 /* MovieCell.m */; };
@@ -50,6 +51,7 @@
 		7C8522460DCD4D2A91532B44 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCE3FC245E1647A6AF9DD5CA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		CC21591D194CCFAE00E70F9D /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
+		CC272878194F67E100621739 /* rotten_tomatoes_demo_optional.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = rotten_tomatoes_demo_optional.gif; path = ../../../../../Users/abhijetv/Documents/rotten_tomatoes_demo_optional.gif; sourceTree = "<group>"; };
 		CC74AF531940211C00F416B7 /* MoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesViewController.h; sourceTree = "<group>"; };
 		CC74AF541940211C00F416B7 /* MoviesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesViewController.m; sourceTree = "<group>"; };
 		CC74AF551940211C00F416B7 /* MoviesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoviesViewController.xib; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		CCD5B6D719401F300052B571 = {
 			isa = PBXGroup;
 			children = (
+				CC272878194F67E100621739 /* rotten_tomatoes_demo_optional.gif */,
 				CC21591D194CCFAE00E70F9D /* Podfile.lock */,
 				CCBCC5A8194574730083BED4 /* rotten_tomatoes_demo.gif */,
 				CCC799B8194573CF00466515 /* README.md */,
@@ -289,6 +292,7 @@
 			files = (
 				CCBCC5A9194574730083BED4 /* rotten_tomatoes_demo.gif in Resources */,
 				CCC799B9194573CF00466515 /* README.md in Resources */,
+				CC272879194F67E100621739 /* rotten_tomatoes_demo_optional.gif in Resources */,
 				CCE7234F194CFF0D006ED97E /* disc.png in Resources */,
 				CCD5B6EE19401F300052B571 /* InfoPlist.strings in Resources */,
 				CC74AF571940211C00F416B7 /* MoviesViewController.xib in Resources */,
