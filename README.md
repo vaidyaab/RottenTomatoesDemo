@@ -18,7 +18,7 @@ Completed user stories:
  * [x] Optional: Customize the highlight and selection effect of the cell
  * [x] Optional: Add a tab bar for Box Office and DVD
  * [x] Optional: Add a search bar
- * [] Optional: Customize the navigation bar
+ * [x] Optional: Customize the navigation bar
  * [] Optional: For the large poster, load the low-res image first, switch to high-res when complete
  * [] Optional: All images should be cached in memory and disk. In other words, images load immediately upon cold start
 

@@ -14,6 +14,7 @@
 @property NSString *thumbnail;
 @property NSString *poster;
 @property NSString *synopsis;
+@property NSData *cachedThumbnail;
 
 -(id) initWithRottenTomatoesAPIResponse: (NSDictionary*) data;
 

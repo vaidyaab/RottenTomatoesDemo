@@ -32,32 +32,46 @@
     self.titleLabel.text = [selectedMovie title];
     self.synopsisLabel.text = [selectedMovie synopsis];
     
-    NSURL *url = [NSURL URLWithString:[selectedMovie thumbnail]];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
-    [request setHTTPShouldHandleCookies:NO];
-    [request setHTTPShouldUsePipelining:YES];
-    [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
-    __weak MovieCell *weakCell = self;
-    [self.posterImageView setImageWithURLRequest: request
-                                placeholderImage:nil
-                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                             
-                                             weakCell.posterImageView.image = image;
-                                             
-                                             weakCell.posterImageView.alpha = 0;
-                                             [UIView beginAnimations:@"fade in" context:nil];
-                                             [UIView setAnimationDuration:2.0];
-                                             weakCell.posterImageView.alpha = 1;
-                                             [UIView commitAnimations];
-                                             
-                                             [progressBarParam hide:TRUE];
-                                         }
-                                         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                             
-                                             [progressBarParam hide:TRUE];
-                                             
-                                         }
-     ];
+    if(selectedMovie.cachedThumbnail){
+        
+        NSLog(@"loading from memory");
+        [self.posterImageView setImage:[UIImage imageWithData:selectedMovie.cachedThumbnail]];
+        
+    }else{
+        
+        NSURL *url = [NSURL URLWithString:[selectedMovie thumbnail]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
+        [request setHTTPShouldHandleCookies:NO];
+        [request setHTTPShouldUsePipelining:YES];
+        [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
+        __weak MovieCell *weakCell = self;
+        [self.posterImageView setImageWithURLRequest: request
+                                    placeholderImage:nil
+                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                                 
+                                                 CGDataProviderRef provider = CGImageGetDataProvider(image.CGImage);
+                                                 NSData* data = (id)CFBridgingRelease(CGDataProviderCopyData(provider));
+                                                 [selectedMovie setCachedThumbnail:data];
+                                                 
+                                                 weakCell.posterImageView.image = image;
+                                                 
+                                                 weakCell.posterImageView.alpha = 0;
+                                                 [UIView beginAnimations:@"fade in" context:nil];
+                                                 [UIView setAnimationDuration:2.0];
+                                                 weakCell.posterImageView.alpha = 1;
+                                                 [UIView commitAnimations];
+                                                 
+                                                 [progressBarParam hide:TRUE];
+                                             }
+                                             failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                 
+                                                 [progressBarParam hide:TRUE];
+                                                 
+                                             }
+         ];
+    }
+    
+    
 
     
     return self;
