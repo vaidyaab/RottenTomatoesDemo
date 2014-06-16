@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		AD680B9EA2334419B62B6071 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8522460DCD4D2A91532B44 /* libPods.a */; };
 		CC21591E194CCFAE00E70F9D /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = CC21591D194CCFAE00E70F9D /* Podfile.lock */; };
+		CC272876194E66EF00621739 /* navbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CC272874194E66EF00621739 /* navbar_bg.png */; };
+		CC272877194E66EF00621739 /* navbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CC272875194E66EF00621739 /* navbar_bg@2x.png */; };
 		CC74AF561940211C00F416B7 /* MoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC74AF541940211C00F416B7 /* MoviesViewController.m */; };
 		CC74AF571940211C00F416B7 /* MoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC74AF551940211C00F416B7 /* MoviesViewController.xib */; };
 		CC74AF5B1940288500F416B7 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC74AF591940288500F416B7 /* MovieCell.m */; };
@@ -50,6 +52,8 @@
 		7C8522460DCD4D2A91532B44 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCE3FC245E1647A6AF9DD5CA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		CC21591D194CCFAE00E70F9D /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
+		CC272874194E66EF00621739 /* navbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navbar_bg.png; path = ../../../../../../../Users/abhijetv/Downloads/CustomNavBar/CustomNavBar/images/navbar_bg.png; sourceTree = "<group>"; };
+		CC272875194E66EF00621739 /* navbar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navbar_bg@2x.png"; path = "../../../../../../../Users/abhijetv/Downloads/CustomNavBar/CustomNavBar/images/navbar_bg@2x.png"; sourceTree = "<group>"; };
 		CC74AF531940211C00F416B7 /* MoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesViewController.h; sourceTree = "<group>"; };
 		CC74AF541940211C00F416B7 /* MoviesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesViewController.m; sourceTree = "<group>"; };
 		CC74AF551940211C00F416B7 /* MoviesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoviesViewController.xib; sourceTree = "<group>"; };
@@ -204,6 +208,8 @@
 		CCE7234C194CFF0D006ED97E /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				CC272874194E66EF00621739 /* navbar_bg.png */,
+				CC272875194E66EF00621739 /* navbar_bg@2x.png */,
 				CCE7234D194CFF0D006ED97E /* disc.png */,
 				CCE7234E194CFF0D006ED97E /* ticket.png */,
 			);
@@ -294,6 +300,8 @@
 				CC74AF571940211C00F416B7 /* MoviesViewController.xib in Resources */,
 				CC74AF5C1940288500F416B7 /* MovieCell.xib in Resources */,
 				CCD5B6F619401F300052B571 /* Images.xcassets in Resources */,
+				CC272877194E66EF00621739 /* navbar_bg@2x.png in Resources */,
+				CC272876194E66EF00621739 /* navbar_bg.png in Resources */,
 				CC21591E194CCFAE00E70F9D /* Podfile.lock in Resources */,
 				CCBB890A19418EA300CA9450 /* MovieDetailsViewController.xib in Resources */,
 				CCE72350194CFF0E006ED97E /* ticket.png in Resources */,
